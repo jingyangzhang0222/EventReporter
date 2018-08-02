@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "112368150243",
+    "firebase_url": "https://project4-zjy222.firebaseio.com",
+    "project_id": "project4-zjy222",
+    "storage_bucket": "project4-zjy222.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112368150243:android:42e76512306dcb38",
+        "android_client_info": {
+          "package_name": "com.laioffer.eventreporter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112368150243-8ol29hahrj3l5k08rqvp0lboq5uqqkvv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmbQkCf_AB6l9ZqsrkCC8NvY4Smgez-hY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

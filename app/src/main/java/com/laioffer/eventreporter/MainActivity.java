@@ -9,7 +9,12 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.EventListener;
+
+public class MainActivity extends AppCompatActivity implements OnItemSelectListener{
     private EventFragment mListFragment;
     private CommentFragment mGridFragment;
 
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment).commit();
         }*/
 
-        //add list view
+        /*//add list view
         mListFragment = new EventFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.event_container,     mListFragment).commit();
 
@@ -33,7 +38,14 @@ public class MainActivity extends AppCompatActivity {
         if (isTablet()) {
             mGridFragment = new CommentFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.comment_container, mGridFragment).commit();
-        }
+        }*/
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!");
+
     }
 
     private boolean isTablet() {
@@ -45,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
                 Configuration.SCREENLAYOUT_SIZE_MASK) >=
                 Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
+
+
 
     @Override
     protected void onStart() {
@@ -86,5 +100,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.e("Life cycle test", "We are at onRestart()");
+    }
+
+    @Override
+    public void onItemSelected(int position) {
+        mGridFragment.onItemSelected(position);
     }
 }

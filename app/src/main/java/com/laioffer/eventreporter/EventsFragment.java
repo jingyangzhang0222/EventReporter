@@ -37,5 +37,4 @@ public class EventsFragment extends Fragment {
         });
         return view;
     }
-
 }

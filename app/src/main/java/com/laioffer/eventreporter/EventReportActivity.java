@@ -147,7 +147,7 @@ public class EventReportActivity extends AppCompatActivity {
         if (mImgUri == null) {
             return;
         }
-        StorageReference imgRef = storageRef.child("images/" + mImgUri.getLastPathSegment() + "_"
+        final StorageReference imgRef = storageRef.child("images/" + mImgUri.getLastPathSegment() + "_"
                 + System.currentTimeMillis());
 
         UploadTask uploadTask = imgRef.putFile(mImgUri);
@@ -162,7 +162,9 @@ public class EventReportActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 @SuppressWarnings("VisibleForTests")
-                Uri downloadUrl = taskSnapshot.getUploadSessionUri();/////////
+                Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                while (!urlTask.isSuccessful());
+                Uri downloadUrl = urlTask.getResult();
                 Log.i(TAG, "upload successfully" + eventId);
                 database.child("events").child(eventId).child("imgUri").
                         setValue(downloadUrl.toString());
